@@ -2,12 +2,16 @@ package co.edu.iudigital.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 
@@ -64,108 +68,173 @@ public class Caso implements Serializable {
 	private String rmiUrl;
 	
     //usuarios_id INT NOT NULL,
-	private Long usuariosId;
+	//FOREIGN KEY (usuarios_id) REFERENCES usuarios(id)
+	@ManyToOne
+	@JoinColumn(name = "usuarios_id")
+	private Long usuarios_id;
 	
     //delitos_id INT NOT NULL,8
-	private Long delitosId;
+	//FOREIGN KEY (delitos_id) REFERENCES delitos(id)
+	@ManyToOne
+	@JoinColumn(name = "delitos_id")
+	private Long delitos_id;
 	
 	
 	
 	//PRIMARY KEY(id),
-    //FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
-    //FOREIGN KEY (delitos_id) REFERENCES delitos(id)
+    
+    
 	
 	
-	
-	
+	@PrePersist
+	public void init() {
+		
+		if (Objects.isNull(fechaHora)) {// fechaHora==Null
+			
+			fechaHora = LocalDateTime.now();			
+			
+		}
+		if(Objects.isNull(visible)) {
+			visible=true;
+		}
+	}
+
+
 
 	public Long getId() {
 		return id;
 	}
 
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
 
 	public LocalDateTime getFechaHora() {
 		return fechaHora;
 	}
 
+
+
 	public void setFechaHora(LocalDateTime fechaHora) {
 		this.fechaHora = fechaHora;
 	}
+
+
 
 	public Float getLatitud() {
 		return latitud;
 	}
 
+
+
 	public void setLatitud(Float latitud) {
 		this.latitud = latitud;
 	}
+
+
 
 	public Float getLongitud() {
 		return longitud;
 	}
 
+
+
 	public void setLongitud(Float longitud) {
 		this.longitud = longitud;
 	}
+
+
 
 	public Float getAltitud() {
 		return altitud;
 	}
 
+
+
 	public void setAltitud(Float altitud) {
 		this.altitud = altitud;
 	}
+
+
 
 	public Boolean getVisible() {
 		return visible;
 	}
 
+
+
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 	}
+
+
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 
+
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+
 
 	public String getUrlMap() {
 		return urlMap;
 	}
 
+
+
 	public void setUrlMap(String urlMap) {
 		this.urlMap = urlMap;
 	}
+
+
 
 	public String getRmiUrl() {
 		return rmiUrl;
 	}
 
+
+
 	public void setRmiUrl(String rmiUrl) {
 		this.rmiUrl = rmiUrl;
 	}
 
-	public Long getUsuariosId() {
-		return usuariosId;
+
+
+	public Long getUsuarios_id() {
+		return usuarios_id;
 	}
 
-	public void setUsuariosId(Long usuariosId) {
-		this.usuariosId = usuariosId;
+
+
+	public void setUsuarios_id(Long usuarios_id) {
+		this.usuarios_id = usuarios_id;
 	}
 
-	public Long getDelitosId() {
-		return delitosId;
+
+
+	public Long getDelitos_id() {
+		return delitos_id;
 	}
 
-	public void setDelitosId(Long delitosId) {
-		this.delitosId = delitosId;
+
+
+	public void setDelitos_id(Long delitos_id) {
+		this.delitos_id = delitos_id;
 	}
+	
+	
+	
+
+
 	
     
 	

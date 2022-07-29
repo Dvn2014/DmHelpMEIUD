@@ -13,8 +13,7 @@ import co.edu.iudigital.service.IDelitoService;
 import co.edu.iudigital.util.Helper;
 
 @Service
-public class DelitoServiceIpml 
-
+public class DelitoServiceIpml
 				implements IDelitoService{
 
 	@Autowired
@@ -47,4 +46,5 @@ public class DelitoServiceIpml
 	}
 
 }
+
 

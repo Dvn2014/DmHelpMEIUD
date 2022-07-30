@@ -52,9 +52,9 @@ public class CasoController {
 	
 	@ApiOperation(
 			value = "Guarda un caso",
+			response = CasoDTO.class, 
 			produces = "application/json",
-			httpMethod = "POST"
-			)
+			httpMethod = "POST")
 	@PostMapping
 	public ResponseEntity<CasoDTO> create(
 				@RequestBody CasoDTO casoDTO
@@ -70,3 +70,4 @@ public class CasoController {
 		}
 	}
 }
+
